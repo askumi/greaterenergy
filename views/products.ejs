@@ -1,0 +1,26 @@
+<%include partials/header.ejs%>
+	<h1><%= title %></h1>
+	<table class="table table-striped">
+	<tr>
+		<th>Name</th>
+		<th>ID</th>
+		<th>Category</th>
+		<th>Description</th>
+		<th>Suggested Retail Price</th>
+		<th>Dealer Discount Price</th>
+		<th>Image</th>
+	</tr>
+	<%for(var i=0; i < products.length; i++){%>
+	<tr>
+		
+		<td><%= products[i].name %></td>
+		<td><%= products[i].partID %></td>
+		<td><%= products[i].category %></td>
+		<td><%= 'No Description' %></td>
+		<td><%= products[i].msrp %></td>
+		<td><%= products[i].msrp * 0.65 %></td>
+		<td><%= 'No Image' %></td>
+    </tr>
+	<%}%>
+	</table>
+<%include partials/footer.ejs%>
