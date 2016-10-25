@@ -1,4 +1,7 @@
 <% include partials/header.ejs %>
-	<h1><%= title %></h1>
-	<p><%= content %></p>
+	<h1>GreaterEnergy</h1>
+	<h4>Energy YOU manufacture!</h4>
+	<% if(user) {%>
+		<p> Welcome <%=user.username%>!</p>
+	<% } %>
 <% include partials/footer.ejs %>

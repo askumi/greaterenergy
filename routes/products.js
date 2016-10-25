@@ -13,7 +13,7 @@ router.get('/', function(req, res, next){
             // load the games view
             res.render('products',
 			{
-                title: 'All Products',
+				user: req.user,
                 products: products
             });
         }

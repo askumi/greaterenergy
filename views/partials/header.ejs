@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title><%= title %></title>
+	<title>GreaterEnergy</title>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
     <link rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
 </head>
@@ -12,6 +12,12 @@
         <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/products">Product List</a></li>
+			<% if(user) {%>
+			<li><a href="/logout">Logout</a></li>
+			<% } else {%>
+			<li><a href="/login">Login</a></li>
+			<li><a href="/register">Register</a></li>
+			<% } %>
         </ul>
     </nav>
 	</header>

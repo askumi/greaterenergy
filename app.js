@@ -31,10 +31,23 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+		secret: 'secretkey487823957',
+		resave: true,
+		saveUninitialized: false
+	}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+//Passport config
+app.use(passport.initialize());
+app.use(passport.session());
+var User = require('./models/user');
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 app.use('/users', users);
+
+app.use('/', routes);
 app.use('/products', products);
 
 // catch 404 and forward to error handler
@@ -67,6 +80,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
