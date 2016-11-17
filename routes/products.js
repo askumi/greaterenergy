@@ -20,4 +20,10 @@ router.get('/', function(req, res, next){
     });
 });
 
+router.get('/add', function(req, res, next) {
+	res.render('add_product', {
+		title: 'Add New Game'
+	});
+});
+
 module.exports = router;
