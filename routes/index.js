@@ -9,8 +9,12 @@ router.get('/', function(req, res, next){
 });
 
 //Authentication
-router.get('/register',function(req, res, next){
-	res.render('auth/register',{user: req.user});
+router.get('/register', function(req, res, next) {
+	if(req.user){
+		res.redirect('/');
+	} else {
+		res.render('auth/register',{user: req.user});
+	}
 });
 router.post('/register', function(req, res, next){
 	User.register(new User({username: req.body.username}), req.body.password, function(err){
@@ -24,9 +28,14 @@ router.post('/register', function(req, res, next){
 		});
 	});
 });
-router.get('/login', function(req, res, next){
-	res.render('auth/login', {user: req.user});
+router.get('/login', function(req, res, next) {
+	if(req.user){
+		res.redirect('/');
+	} else {
+		res.render('auth/login', {user: req.user});
+	}
 });
+
 router.post('/login', passport.authenticate('local'), function(req, res, next){
 	res.redirect('/');
 });
