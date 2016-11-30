@@ -4,13 +4,13 @@
 		<div name='sidebar' class="col-md-3">
 			<p>TODO: put company logo here</p>
 			<div class="list-group">
-				<!-- Show every category in the products once -->
+				<%#Show every category in the products once %>
 				<%var category = products[0].category%>
 				<a href="/products/<%=category%>" class="list-group-item"><%=category%></a>
 				<%for(var i=0; i < products.length; i++){%>
-				<!-- If we are in a different category now -->
+				<%#If we are in a different category now %>
 				<%if(category != products[i].category){%>
-						<!-- Add a link to the new category -->
+					<%#Add a link to the new category %>
 					<%category = products[i].category%>
 					<a href="/products/<%=category%>" class="list-group-item"><%=category%></a>
 					<%}%>
@@ -19,21 +19,19 @@
 		</div>
 		<!-- give each product a set size of 9 -->
 		<div class="col-md-9">
-			<!-- give each product a set height. this solves the problem of products with longer names throwing off spacing -->
-			<div class="row-md-2">
-				<%for(var i=0; i < products.length; i++){%>
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<div class="thumbnail">
-						<img src="images/noimage.png">
-						<div class="caption">
-							<h4 class="pull-right">$<%= products[i].price %></h4>
-							<h4><a href="/products/<%=products[i].id%>"><%= products[i].name %></a></h4>
-							<p>TODO put product description here</p>
-						</div>
+			<%for(var i=0; i < products.length; i++){%>
+			<div class="col-sm-4 col-lg-4 col-md-4">
+				<div class="thumbnail">
+					<img src="images/noimage.png">
+					<div class="caption" >
+						<h4><a href="/products/<%=products[i].id%>"><%= products[i].name %></a></h4>
+						<p>TODO put product description here</p>
+						<button type="button" class="btn btn-primary btn-md">Add to Cart</button>
+						<h4 class="pull-right">$<%= products[i].price %></h4>
 					</div>
 				</div>
-				<%}%>
 			</div>
+			<%}%>
 		</div>
 	</div>
 <%include partials/footer.ejs%>
