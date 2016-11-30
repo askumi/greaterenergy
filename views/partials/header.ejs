@@ -5,15 +5,17 @@
 	<title>GreaterEnergy</title>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
     <link rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
 	<header>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/products">Product List</a></li>
 			<% if(user) {%>
 			<li><a href="/logout">Logout</a></li>
+			<li><a href="/cart">My Cart(0)</a></li>
 			<% } else {%>
 			<li><a href="/login">Login</a></li>
 			<li><a href="/register">Register</a></li>

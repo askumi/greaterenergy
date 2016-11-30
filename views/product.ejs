@@ -1,0 +1,13 @@
+<% include partials/header.ejs %>
+	<h2> Product Information </h2>
+	<h3> <%= product.name %> </h3>
+	<br />
+	<img src="images/noimage.png"> <!-- TODO: Make function to return image or noimage.png if not found -->
+	<br />
+	<h4> Category: </h4><p><%= product.category %> </p>
+	<h4> Description: </h4><p><%= product.description %> </p>
+	<h4> Price: </h4><p>$<%= product.price %> </p>
+	<%if(user){%>
+		<a href="/products/edit/<%=product.id%>" type="button" class="btn btn-primary btn-md">Edit Product Information (Admin only in real site)</a>
+	<%}%>
+<% include partials/footer.ejs %>

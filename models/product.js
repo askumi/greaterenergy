@@ -22,4 +22,10 @@ var productSchema = new mongoose.Schema({
     }
 });
 
+productSchema.methods.getDescription = function() { 
+	if(this.description == null || this.description === "")
+		return 'No Description Found';
+    return this.description;
+}
+
 module.exports = mongoose.model('Product', productSchema);

@@ -1,3 +1,3 @@
 module.exports = {
-  db: 'mongodb://greaterenergyrootuser:greaterenergy#DB7@ds031607.mlab.com:31607/greaterenergy'
+  db: '127.0.0.1/greaterenergy'
 };
