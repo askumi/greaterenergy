@@ -16,9 +16,9 @@ var productSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    msrp: {
-        type: String,
-        required: 'No MSRP entered'
+    price: {
+        type: Number,
+        required: 'No Price entered'
     }
 });
 

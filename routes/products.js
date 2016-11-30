@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Product = require('../models/product');
 
-/* GET products listing. */
 router.get('/', function(req, res, next){
     Product.find(function(err, products){
         if(err){
@@ -10,7 +9,6 @@ router.get('/', function(req, res, next){
             res.render('error');
         }
         else{
-            // load the games view
             res.render('products',
 			{
 				user: req.user,
@@ -18,12 +16,6 @@ router.get('/', function(req, res, next){
             });
         }
     });
-});
-
-router.get('/add', function(req, res, next) {
-	res.render('add_product', {
-		title: 'Add New Game'
-	});
 });
 
 module.exports = router;
