@@ -19,9 +19,15 @@ router.get('/', function(req, res, next){
     });
 });
 router.get('/add', function(req, res, next) {
+	if(!req.user){
+		res.redirect('/login');
+	}
 	res.render('add-product', {user: req.user});
 });
 router.post('/add', function(req, res, next){
+	if(!req.user){
+		res.redirect('/login');
+	}
 	Product.create({
 		name: req.body.name,
 		category: req.body.category,
