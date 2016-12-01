@@ -103,16 +103,16 @@ router.post('/edit/:_id', function(req, res, next){
 		res.redirect('/login');
 	}
 	//Save image if uploaded one
-	if(req.body.image != null){
-		var fs = require('fs');
-		var request = require('request');
-		var path = "./public/images/"+req.body.partID+".png";
-		console.log("FILES::"+req.files);
-		console.log("IMAGE::"+req.files.image);
-		request(req.body.image, {encoding: 'binary'}, function(err, res, body){
-			fs.writeFile(path, body, 'binary', function(err){});
-	});
-	}
+//	if(req.body.image != null){
+//		var fs = require('fs');
+//		var request = require('request');
+//		var path = "./public/images/"+req.body.partID+".png";
+//		console.log("FILES::"+req.files);
+//		console.log("IMAGE::"+req.files.image);
+//		request(req.body.image, {encoding: 'binary'}, function(err, res, body){
+//			fs.writeFile(path, body, 'binary', function(err){});
+//	});
+//	}
 	var _id = req.params._id;
     var product = new Product( {
 		_id: _id,
