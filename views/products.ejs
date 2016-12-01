@@ -4,13 +4,13 @@
 		<div name='sidebar' class="col-md-3">
 			<p>TODO: put company logo here</p>
 			<div class="list-group">
-				<%var category = products[0].category;
-				var catID = 0; %>
-					<a href="#" class="list-group-item"><%=category%></a>
+				<%if(products.length > 0){%>
+					<%var category = products[0].category;%>
+				<%}%>
+				<a href="#" class="list-group-item"><%=category%></a>
 				<%for(var i=0; i < products.length; i++){%>
 				<%if(category != products[i].category){%>
 					<%category = products[i].category%>
-					<%catID = catID + 1;%>
 					<a href="#" class="list-group-item"><%=category%></a>
 					<%}%>
 				<%}%>
