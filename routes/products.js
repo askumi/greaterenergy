@@ -58,13 +58,18 @@ router.post('/edit/:_id', function(req, res, next){
 	if(!req.user){
 		res.redirect('/login');
 	}
-	var _id = req.params._id;
+	//Save image if uploaded one
 	if(req.body.image != null){
-		var userImage = req.body.image;
-		var imgData = getBase64Image(userImage);
-		localStorage.setItem(req.body.name, imgData);
+		var fs = require('fs');
+		var request = require('request');
+		var path = "./public/images/"+req.body.partID+".png";
+		console.log("FILES::"+req.files);
+		console.log("IMAGE::"+req.files.image);
+		request(req.body.image, {encoding: 'binary'}, function(err, res, body){
+			fs.writeFile(path, body, 'binary', function(err){});
+	});
 	}
-
+	var _id = req.params._id;
     var product = new Product( {
 		_id: _id,
         name: req.body.name,
@@ -74,13 +79,13 @@ router.post('/edit/:_id', function(req, res, next){
     });
 
     Product.update( { _id: _id }, product, function(err) {
-       if (err) {
-           console.log(err);
-           res.render('error', {message: 'Could not Update Game'});
-       }
-        else {
-           res.redirect('/products/'+_id);
-       }
+		if (err) {
+			console.log(err);
+			res.render('error', {message: 'Could not Update Product'});
+		}
+			else {
+			res.redirect('/products/'+_id);
+		}
     });
 });
 
