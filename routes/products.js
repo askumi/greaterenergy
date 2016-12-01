@@ -12,7 +12,25 @@ router.get('/', function(req, res, next){
             res.render('products',
 			{
 				user: req.user,
-                products: products
+                products: products,
+				filter: -1
+            });
+        }
+    });
+});
+router.get('/category/:filter', function(req, res, next){
+	var filter = req.params.filter;
+    Product.find(function(err, products){
+        if(err){
+            console.log(err);
+            res.render('error');
+        }
+        else{
+            res.render('products',
+			{
+				user: req.user,
+                products: products,
+				filter: filter
             });
         }
     });

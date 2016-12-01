@@ -4,22 +4,24 @@
 		<div name='sidebar' class="col-md-3">
 			<p>TODO: put company logo here</p>
 			<div class="list-group">
-				<%#Show every category in the products once %>
-				<%var category = products[0].category%>
-				<a href="/products/<%=category%>" class="list-group-item"><%=category%></a>
+				<%var category = products[0].category;
+				var catID = 0; %>
+					<a href="/products/category/<%=catID%>" class="list-group-item"><%=category%></a>
 				<%for(var i=0; i < products.length; i++){%>
-				<%#If we are in a different category now %>
 				<%if(category != products[i].category){%>
-					<%#Add a link to the new category %>
 					<%category = products[i].category%>
-					<a href="/products/<%=category%>" class="list-group-item"><%=category%></a>
+					<%catID = catID + 1;%>
+					<a href="/products/category/<%=catID%>" class="list-group-item"><%=category%></a>
 					<%}%>
 				<%}%>
 			</div>
 		</div>
 		<!-- give each product a set size of 9 -->
 		<div class="col-md-9">
-			<%for(var i=0; i < products.length; i++){%>
+			<% var catID = 0;
+			 var catName = products[0].category;
+			for(var i=0; i < products.length; i++){
+			if(catID == filter || filter == -1){ %>
 			<div class="col-sm-4 col-lg-4 col-md-4"> <%# 12 / 4 = 3 per row %>
 				<div class="thumbnail">
 					<img src="images/noimage.png">
@@ -34,7 +36,11 @@
 					<%}%>
 				</div>
 			</div>
-			<%}%>
+			<%}else if(products[i].category != catName){
+			catID = catID + 1;
+			catName = products[i];
+			}
+			}%>
 		</div>
 	</div>
 <%include partials/footer.ejs%>
