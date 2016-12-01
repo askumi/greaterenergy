@@ -18,6 +18,26 @@ router.get('/', function(req, res, next){
         }
     });
 });
+router.get('/add', function(req, res, next) {
+	res.render('add-product', {user: req.user});
+});
+router.post('/add', function(req, res, next){
+	Product.create({
+		name: req.body.name,
+		category: req.body.category,
+		partID: req.body.partID,
+		description: req.body.description,
+		price: req.body.price
+	}, function(err, Product){
+		if(err){
+			console.log(err)
+			res.render('error');
+		}
+		else{
+			res.redirect('/products');
+		}
+	})
+});
 router.get('/category/:filter', function(req, res, next){
 	var filter = req.params.filter;
     Product.find(function(err, products){
@@ -106,6 +126,17 @@ router.post('/edit/:_id', function(req, res, next){
 		}
     });
 });
-
+router.get('/delete/:_id', function(req, res, next) {
+	var _id = req.params._id;
+	Product.remove({_id: _id}, function(err){
+		if(err){
+			console.log(err);
+			res.render('error', {message: 'Delete Error'});
+		}
+		else{
+			res.redirect('/products');
+		}
+	});
+});
 
 module.exports = router;

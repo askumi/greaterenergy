@@ -6,22 +6,22 @@
 			<div class="list-group">
 				<%var category = products[0].category;
 				var catID = 0; %>
-					<a href="/products/category/<%=catID%>" class="list-group-item"><%=category%></a>
+					<a href="#" class="list-group-item"><%=category%></a>
 				<%for(var i=0; i < products.length; i++){%>
 				<%if(category != products[i].category){%>
 					<%category = products[i].category%>
 					<%catID = catID + 1;%>
-					<a href="/products/category/<%=catID%>" class="list-group-item"><%=category%></a>
+					<a href="#" class="list-group-item"><%=category%></a>
 					<%}%>
 				<%}%>
 			</div>
+			<% if(user){ %>
+				<a href="/products/add/" type="button" class="btn btn-primary btn-md">Add New Product</a>
+			<%}%>
 		</div>
 		<!-- give each product a set size of 9 -->
 		<div class="col-md-9">
-			<% var catID = 0;
-			 var catName = products[0].category;
-			for(var i=0; i < products.length; i++){
-			if(catID == filter || filter == -1){ %>
+			<%for(var i=0; i < products.length; i++){%>
 			<div class="col-sm-4 col-lg-4 col-md-4"> <%# 12 / 4 = 3 per row %>
 				<div class="thumbnail">
 					<img src="images/noimage.png">
@@ -36,11 +36,7 @@
 					<%}%>
 				</div>
 			</div>
-			<%}else if(products[i].category != catName){
-			catID = catID + 1;
-			catName = products[i];
-			}
-			}%>
+			<%}%>
 		</div>
 	</div>
 <%include partials/footer.ejs%>
